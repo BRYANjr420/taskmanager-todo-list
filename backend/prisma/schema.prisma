@@ -1,0 +1,22 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Task {
+  id Int @id @default(autoincrement())
+  guestId String @db.VarChar(36)
+  heading String @db.VarChar(80)
+  descriptions String @db.Text
+  completed Boolean @default(false)
+  dueDeta DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([guestId])
+  @@map("tasks")
+}
