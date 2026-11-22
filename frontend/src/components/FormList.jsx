@@ -14,7 +14,7 @@ function FormList() {
   useEffect(() => {
     const loadTask = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/task", {
+        const response = await fetch("https://taskmanager-todo-list.onrender.com/api/task", {
           method: "GET",
           headers: {
             "x-guest-id": geustId(),
@@ -61,7 +61,7 @@ function FormList() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/tasks", {
+      const response = await fetch("https://taskmanager-todo-list.onrender.com/api/tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -101,7 +101,7 @@ function FormList() {
     setDeletingId(id);
 
     try {
-      const response = await fetch(`http://localhost:5000/api/tasks/${id}`, {
+      const response = await fetch(`https://taskmanager-todo-list.onrender.com/api/tasks/${id}`, {
         method: "delete",
         headers: {
           "x-guest-id": geustId(),
