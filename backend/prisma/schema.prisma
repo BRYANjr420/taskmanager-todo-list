@@ -13,7 +13,7 @@ model Task {
   heading String @db.VarChar(80)
   descriptions String @db.Text
   completed Boolean @default(false)
-  dueDeta DateTime?
+  dueDate DateTime?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
