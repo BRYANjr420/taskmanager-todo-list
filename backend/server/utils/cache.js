@@ -1,7 +1,7 @@
 const NodeCatched = require("node-cache");
 const cache = new NodeCatched({ stdTTL: 300});
 
-const caching = async (duration = 300) => (req, res, next) => {
+const caching = (duration = 300) => (req, res, next) => {
   if (req.method !== "Get") return next();
 
   const guestId = req.headers["x-guest-id"];
