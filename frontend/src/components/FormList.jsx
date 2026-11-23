@@ -10,6 +10,7 @@ function FormList() {
   });
   const [tasks, setTasks] = useState([]);
   const [deletingId, setDeletingId] = useState(null);
+  const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
     const loadTask = async () => {
@@ -60,6 +61,9 @@ function FormList() {
       return;
     }
 
+      if(isAdding) return;
+      setIsAdding(true);
+
     try {
       const response = await fetch("https://taskmanager-todo-list.onrender.com/api/tasks", {
         method: "POST",
@@ -87,6 +91,8 @@ function FormList() {
       });
     } catch (err) {
       console.log("Error adding task", err.message);
+    } finally{
+      setIsAdding(false);
     }
   };
 
@@ -134,6 +140,7 @@ function FormList() {
             onChange={handleChange}
             aria-label="Task heading here"
             placeholder="Enter Task Title here..."
+            disabled={isAdding}
             required
           />
 
@@ -145,13 +152,14 @@ function FormList() {
             onChange={handleChange}
             aria-label="Task heading here"
             placeholder="Descriptions(optional)"
+            disabled={isAdding}
           />
 
           <button
             className="w-full md:w-auto whitespace-nowrap bg-[#4F46E5] py-1 md:p-3 px-2 text-white text-lg font-bold rounded-md cursor-pointer hover:scale-101 transition-all duration-300 hover:bg-[#8B5CF6]"
             type="submit"
           >
-            Add Task
+            {isAdding ? "Adding..." : "Add Task"}
           </button>
         </div>
       </form>
